@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ronald E-Loading | Online Loading Station</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar"><div class="brand"><div class="logo"><img src="eloading.jpg" alt="Ronald E-Loading Business Station"></div><div><b>RONALD</b><small>E-LOADING STATION</small></div></div><button id="themeBtn" class="icon-btn" type="button">🌙</button></header>
+
+<main>
+  <section class="app-hero" id="home">
+  <div class="hero-copy">
+    <a class="status-pill" href="#order" aria-label="Online ordering - go to order"><i></i><span>ONLINE</span>&nbsp; FAST • SAFE • AFFORDABLE</a>
+    <h1 class="glow-title">Load. Pay.<br><span>Done.</span></h1>
+    <p>Choose a network, pick your promo, pay, and send your order in a few easy steps.</p>
+    <div class="hero-actions">
+      <a href="#promos" class="primary-btn">Browse Promos <b>→</b></a>
+      <a href="#order" class="outline-btn">Place an Order</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <span>ONLINE E-LOADING STATION</span>
+    <strong>ALL NETWORKS</strong>
+    <small>SMART • TNT • DITO • GLOBE • TM • GOMO • GFIBER • GLOBE AT HOME</small>
+    <div class="mini-status"><i></i> Orders accepted online</div>
+  </div>
+</section>
+
+  <section class="section" id="promos">
+    <div class="section-head">
+      <div><span class="eyebrow">STEP 1</span><h2 id="networkTitle">Choose Network</h2></div>
+      <input id="search" class="search" type="search" placeholder="Search promo...">
+    </div>
+    <div id="networkGrid" class="network-grid"></div>
+    <div id="promoGrid" class="promo-grid"></div>
+  </section>
+
+  <section class="section order-section" id="order">
+    <div class="section-head">
+      <div><span class="eyebrow">STEP 2</span><h2>Complete Order</h2></div>
+      <button id="clearBtn" class="secondary-btn" type="button">Clear</button>
+    </div>
+
+    <form id="orderForm" action="/api/orders" method="POST" enctype="multipart/form-data">
+      <input type="hidden" id="orderNo" name="Order Number">
+      <input type="hidden" id="amountField" name="Amount">
+      <input type="hidden" id="promoField" name="Promo">
+      <input type="hidden" id="networkField" name="Network">
+
+      <div class="form-grid">
+        <label>Customer Name
+          <input id="customerName" name="Customer Name" required placeholder="Full name">
+        </label>
+        <label>Mobile Number
+          <input id="mobile" name="Mobile Number" required inputmode="numeric" maxlength="11" placeholder="09xxxxxxxxx">
+        </label>
+        <label>Network
+          <select id="network" name="Network Selected" required>
+            <option value="">Select network</option>
+          </select>
+        </label>
+        <label>Promo
+          <select id="promo" name="Promo Selected" required>
+            <option value="">Select promo</option>
+          </select>
+        </label>
+        <label>Payment Method
+          <select id="payment" name="Payment Method" required>
+            <option value="">Select payment</option>
+            <option>GCash</option>
+            <option>Maya</option>
+            <option>GoTyme Bank</option>
+            <option>MariBank</option>
+            <option>QR PH</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="paymentBox" class="payment-box">
+        <b>Payment details</b>
+        <p>Choose a payment method to display the account details.</p>
+      </div>
+
+      <label>Reference / Transaction No. (optional)
+        <input name="Reference Number" placeholder="If available">
+      </label>
+
+      <label class="upload">Payment Screenshot
+        <input id="screenshot" type="file" name="Payment Screenshot" accept=".jpg,.jpeg,.png,image/jpeg,image/png" required>
+        <small>Attach your payment proof (JPG, JPEG, or PNG only).</small>
+      </label>
+
+      <div id="summary" class="summary">
+        <b>Order Summary</b>
+        <p>No promo selected yet.</p>
+      </div>
+
+      <button class="primary-btn submit-btn" type="submit">Submit Order</button><div id="submitStatus" class="notice" role="status"></div>
+      
+    </form>
+  </section>
+<section class="section mlbb-section" id="mlbb-topup">
+  <div class="section-head">
+    <div><span class="eyebrow">MLBB TOP UP</span><h2>Mobile Legends: Bang Bang</h2></div>
+  </div>
+  <button type="button" class="mlbb-launcher" id="mlbbLauncher" aria-expanded="false" aria-controls="mlbbForm">
+    <img src="assets/picture.png" alt="MLBB Top Up">
+    <span class="mlbb-launcher-overlay"><b>MLBB TOP UP</b><small>Tap to view Diamonds &amp; Weekly Pass</small></span>
+  </button>
+  <form id="mlbbForm" class="mlbb-form-hidden" action="/api/orders" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="Order Type" value="MLBB Top Up">
+    <input type="hidden" id="mlOrderNo" name="Order Number">
+    <input type="hidden" id="mlAmountField" name="Amount">
+    <input type="hidden" id="mlPromoField" name="Promo">
+    <input type="hidden" name="Network" value="MLBB">
+
+    <div class="mlbb-id-box">
+      <b>Customer &amp; MLBB Account Details</b>
+      <div class="form-grid">
+        <label>Name
+          <input id="mlCustomerName" name="Customer Name" required autocomplete="name" placeholder="Enter your name">
+        </label>
+        <label>User ID
+          <input id="mlUserId" name="MLBB User ID" required inputmode="numeric" placeholder="Enter User ID">
+        </label>
+        <label>Zone ID
+          <input id="mlZoneId" name="MLBB Zone ID" required inputmode="numeric" placeholder="Enter Zone ID">
+        </label>
+      </div>
+    </div>
+
+    <div class="mlbb-products">
+      <div class="mlbb-group-title">Weekly Diamond Pass</div>
+      <article class="promo ml-product">
+        <h3>Weekly Pass</h3>
+        <div class="price">₱118</div>
+        <button class="select-btn ml-select-btn" type="button" data-ml-name="Weekly Pass" data-ml-price="118">Select</button>
+      </article>
+
+      <div class="mlbb-group-title">Diamonds</div>
+      <div class="promo-grid ml-diamond-grid">
+        <article class="promo ml-product"><h3>5 Diamonds</h3><div class="price">₱6</div><button class="select-btn ml-select-btn" type="button" data-ml-name="5 Diamonds" data-ml-price="6">Select</button></article>
+        <article class="promo ml-product"><h3>11 Diamonds</h3><div class="price">₱12</div><button class="select-btn ml-select-btn" type="button" data-ml-name="11 Diamonds" data-ml-price="12">Select</button></article>
+        <article class="promo ml-product"><h3>22 Diamonds</h3><div class="price">₱23</div><button class="select-btn ml-select-btn" type="button" data-ml-name="22 Diamonds" data-ml-price="23">Select</button></article>
+        <article class="promo ml-product"><h3>56 Diamonds</h3><div class="price">₱57</div><button class="select-btn ml-select-btn" type="button" data-ml-name="56 Diamonds" data-ml-price="57">Select</button></article>
+        <article class="promo ml-product"><h3>112 Diamonds</h3><div class="price">₱113</div><button class="select-btn ml-select-btn" type="button" data-ml-name="112 Diamonds" data-ml-price="113">Select</button></article>
+        <article class="promo ml-product"><h3>223 Diamonds</h3><div class="price">₱226</div><button class="select-btn ml-select-btn" type="button" data-ml-name="223 Diamonds" data-ml-price="226">Select</button></article>
+        <article class="promo ml-product"><h3>336 Diamonds</h3><div class="price">₱339</div><button class="select-btn ml-select-btn" type="button" data-ml-name="336 Diamonds" data-ml-price="339">Select</button></article>
+        <article class="promo ml-product"><h3>570 Diamonds</h3><div class="price">₱565</div><button class="select-btn ml-select-btn" type="button" data-ml-name="570 Diamonds" data-ml-price="565">Select</button></article>
+        <article class="promo ml-product"><h3>1,163 Diamonds</h3><div class="price">₱1,130</div><button class="select-btn ml-select-btn" type="button" data-ml-name="1,163 Diamonds" data-ml-price="1130">Select</button></article>
+        <article class="promo ml-product"><h3>2,398 Diamonds</h3><div class="price">₱2,260</div><button class="select-btn ml-select-btn" type="button" data-ml-name="2,398 Diamonds" data-ml-price="2260">Select</button></article>
+        <article class="promo ml-product"><h3>6,042 Diamonds</h3><div class="price">₱5,650</div><button class="select-btn ml-select-btn" type="button" data-ml-name="6,042 Diamonds" data-ml-price="5650">Select</button></article>
+      </div>
+    </div>
+
+    <div class="mlbb-order-box">
+      <div id="mlSummary" class="summary"><b>MLBB Order Summary</b><p>No package selected yet.</p></div>
+      <div class="form-grid">
+        <label>Payment Method
+          <select id="mlPayment" name="Payment Method" required>
+            <option value="">Select payment</option>
+            <option>GCash</option>
+            <option>Maya</option>
+            <option>GoTyme Bank</option>
+            <option>MariBank</option>
+                      <option>QR PH</option>
+          </select>
+        </label>
+      </div>
+      <div id="mlPaymentBox" class="payment-box"><b>Payment details</b><p>Choose a payment method to display the account details.</p></div>
+      <label>Reference / Transaction No. (optional)
+        <input name="Reference Number" placeholder="If available">
+      </label>
+      <label class="upload">Payment Screenshot
+        <input id="mlScreenshot" type="file" name="Payment Screenshot" accept=".jpg,.jpeg,.png,image/jpeg,image/png" required>
+        <small>Attach your payment proof (JPG, JPEG, or PNG only).</small>
+      </label>
+      <button class="primary-btn submit-btn" id="mlSubmitBtn" type="submit">Send MLBB Order</button>
+      <div id="mlSubmitStatus" class="notice" role="status"></div>
+    </div>
+  </form>
+</section>
+
+<section class="section" id="track-order">
+  <div class="section-head"><div><span class="eyebrow">ORDER STATUS</span><h2>Track Your Order</h2></div></div>
+  <p>Enter your Order Number to check if your order is still processing or already successfully loaded.</p>
+  <div class="track-box">
+    <input id="trackOrderNo" placeholder="Enter Order Number" autocomplete="off">
+    <button id="trackBtn" class="primary-btn" type="button">Check Status</button>
+  </div>
+  <div id="trackResult" class="summary" hidden></div>
+</section>
+<section class="features section" id="features">
+  <div class="feature-item"><div class="feature-icon">✓</div><div><b>Simple ordering</b><small>No login required</small></div></div>
+  <div class="feature-item"><div class="feature-icon">🔒</div><div><b>Payment proof</b><small>Attach before sending</small></div></div>
+  <div class="feature-item"><div class="feature-icon">⚡</div><div><b>Fast processing</b><small>Orders sent directly</small></div></div>
+</section>
+</main>
+
+<footer>
+  <div class="footer-brand"><div class="footer-logo"><img src="eloading.jpg" alt="Ronald E-Loading"></div><div><b>RONALD E-LOADING BUSINESS STATION</b><small>Fast • Safe • Affordable</small></div></div>
+  <p>Facebook: Ronald San Pedro Petilo Jr.</p>
+  <small>© 2026 Ronald E-Loading Business Station</small>
+</footer>
+<nav class="bottom-nav">
+  <a href="#home">⌂<span>Home</span></a>
+  <a href="#promos">▦<span>Promos</span></a>
+  <a href="#order">＋<span>Order</span></a>
+  <a href="#order">◉<span>Payment</span></a>
+</nav>
+
+<div id="successModal" class="success-modal" hidden aria-hidden="true">
+  <div class="success-modal-backdrop"></div>
+  <div class="success-modal-box" role="dialog" aria-modal="true" aria-labelledby="successModalTitle">
+    <h3 id="successModalTitle">Order submitted successfully!</h3>
+    <div class="order-number-card">
+      <small>YOUR ORDER NUMBER</small>
+      <strong id="successOrderNumber">—</strong>
+      <button type="button" id="copyOrderNumber">📋 COPY ORDER NUMBER</button>
+    </div>
+    <p>📌 <b>Save your Order Number</b> for tracking your order and receipt.</p>
+    <p>🟡 <b>ORDER PROCESSING</b></p>
+    <p>PLEASE WAIT YOUR ORDER A FEW MINUTES.</p>
+    <p><b>THANK YOU, COME AGAIN!</b></p>
+    <button type="button" id="successModalOk">OK</button>
+  </div>
+</div>
+
+<script src="script.js?v=qr-mop-v2"></script>
+</body>
+</html>
+
+
+
